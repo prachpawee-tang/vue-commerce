@@ -1,57 +1,80 @@
-# vue-commerce
+# Vue E-Commerce Practice App
 
-This template should help get you started developing with Vue 3 in Vite.
+A simple e-commerce application built with Vue.js for practice purposes, utilizing modern tools and APIs.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Product listing from FakeStore API
+- State management with Pinia
+- Unit testing with Vitest
+- End-to-end testing with Cypress
+- Responsive design
 
-## Customize configuration
+## Technologies Used
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Vue 3
+- Pinia (State Management)
+- FakeStore API (Data Source)
+- Vitest (Unit Testing)
+- Cypress (E2E Testing)
+- Vite (Build Tool)
+- Vue Router
 
 ## Project Setup
 
-```sh
+### Installation
+
+```bash
+# Install dependencies
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Development Server
 
-```sh
+```bash
+# Run development server
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Testing
 
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
+```bash
+# Run unit tests
 npm run test:unit
-```
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
+# Run e2e tests
 npm run test:e2e
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Build for Production
 
-```sh
-npm run lint
+```bash
+# Build for production
+npm run build
 ```
+
+## API Usage
+
+This project uses the [FakeStore API](https://fakestoreapi.com/) to fetch product data. The following endpoints are used:
+
+- `GET /products` - Get all products
+- `GET /products/:id` - Get single product details
+
+## Project Structure
+
+src/
+├── assets/ # Static assets
+├── components/ # Vue components
+├── stores/ # Pinia stores
+├── router/ #
+├── views/ # Page components
+├── App.vue # Main application component
+└── main.js # Application entry point
+
+## Contributing
+
+This is a personal practice project, but feel free to fork and modify it for your own learning purposes.
+
+## License
+
+MIT License
