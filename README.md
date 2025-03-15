@@ -71,6 +71,10 @@ src/
 ├── App.vue # Main application component  
 └── main.js # Application entry point
 
+## Demo
+
+Check out the live demo of the application: [Live Demo](https://vue-commerce-c5e33.web.app/)
+
 ## Contributing
 
 This is a personal practice project, but feel free to fork and modify it for your own learning purposes.
