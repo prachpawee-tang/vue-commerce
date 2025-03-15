@@ -14,7 +14,6 @@ onMounted(() => {
   nextTick(() => {
     headerHeight.value = headerRef.value?.$el?.clientHeight || headerRef.value?.clientHeight || 0
     footerHeight.value = footerRef.value?.$el?.clientHeight || footerRef.value?.clientHeight || 0
-    console.log('Header height:', headerHeight.value, 'Footer height:', footerHeight.value)
   })
 })
 </script>

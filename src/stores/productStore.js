@@ -37,5 +37,15 @@ export const useProductStore = defineStore('product', {
     cartQuantity() {
       return this.cart.reduce((total, item) => total + item.quantity, 0)
     },
+    categories() {
+      const categories = new Set()
+      this.products.forEach((product) => {
+        categories.add(product.category)
+      })
+      return Array.from(categories)
+    },
+    categoryList(category) {
+      return this.products.filter((product) => product.category === category)
+    },
   },
 })

@@ -94,7 +94,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 0 1rem 1rem;
 }
 
 .left-content .small-text {

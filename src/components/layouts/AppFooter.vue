@@ -49,7 +49,7 @@
   position: relative;
   width: 100%;
   padding: 2rem;
-  background-color: var(--bg-color);
+  background-color: #000;
   border-top: 1px solid var(--border-color);
   /* margin-top: 2rem; */
 }
