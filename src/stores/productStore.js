@@ -5,11 +5,16 @@ export const useProductStore = defineStore('product', {
   state: () => ({
     products: [],
     cart: [],
+    product: null,
   }),
   actions: {
     async fetchProducts() {
       const response = await axios.get('https://fakestoreapi.com/products')
       this.products = response.data
+    },
+    async fetchProduct(id) {
+      const response = await axios.get('https://fakestoreapi.com/products/' + id)
+      this.product = response.data
     },
     addToCart(product) {
       const cartItem = this.cart.find((item) => item.id === product.id)

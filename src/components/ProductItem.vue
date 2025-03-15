@@ -7,10 +7,12 @@
       <button class="add-to-cart-btn" @click="addToCart(product)">Add to Cart</button>
     </div>
     <div class="product-content">
-      <h2>
-        <span>{{ product.title }}</span>
-      </h2>
-      <p>${{ product.price }}</p>
+      <router-link :to="`/products/${product.id}`" class="product-link">
+        <h2>
+          <span>{{ product.title }}</span>
+        </h2>
+        <p>${{ product.price }}</p>
+      </router-link>
     </div>
   </div>
 </template>
@@ -158,5 +160,15 @@ button {
 
 button:hover {
   background-color: #1d4ed8;
+}
+
+.product-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  flex: 1;
+}
+.product-link::after {
+  display: none;
 }
 </style>

@@ -116,6 +116,10 @@ const handleCarouselNext = () => {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+.category-card::after {
+  display: none;
+}
+
 .category-icon {
   font-size: 2rem;
   margin-bottom: 0.5rem;
