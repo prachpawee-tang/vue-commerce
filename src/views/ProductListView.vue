@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <h1>Products</h1>
     <div v-if="loading">Loading...</div>
     <div v-else class="product-grid">
@@ -10,13 +10,13 @@
         @add-to-cart="addToCart"
       />
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
 import { useProductStore } from '@/stores/productStore'
 import { mapState, mapActions } from 'pinia'
-import ProductItem from './ProductItem.vue'
+import ProductItem from '@/components/ProductItem.vue'
 
 export default {
   components: {

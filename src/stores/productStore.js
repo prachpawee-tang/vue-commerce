@@ -34,5 +34,8 @@ export const useProductStore = defineStore('product', {
     cartTotal() {
       return this.cart.reduce((total, item) => total + item.price * item.quantity, 0)
     },
+    cartQuantity() {
+      return this.cart.reduce((total, item) => total + item.quantity, 0)
+    },
   },
 })
