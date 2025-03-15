@@ -30,7 +30,26 @@
       </tr>
     </tbody>
   </table>
-  <p class="total">Total: ${{ cartTotal }}</p>
+  <div class="total-card">
+    <h3 class="card-title">Cart Total</h3>
+    <div class="price-details">
+      <div class="price-row">
+        <span>Subtotal</span>
+        <span>${{ cartTotal.toFixed(2) }}</span>
+      </div>
+      <div class="divider"></div>
+      <div class="price-row">
+        <span>Shipping</span>
+        <span>${{ shippingPrice.toFixed(2) }}</span>
+      </div>
+      <div class="divider"></div>
+      <div class="price-row total">
+        <span>Total</span>
+        <span>${{ (cartTotal + shippingPrice).toFixed(2) }}</span>
+      </div>
+    </div>
+    <button class="checkout-button" @click="proceedToCheckout">Proceed to Checkout</button>
+  </div>
 </template>
 
 <script>
@@ -40,6 +59,11 @@ import { mapState, mapActions } from 'pinia'
 export default {
   computed: {
     ...mapState(useProductStore, ['cart', 'cartTotal']),
+  },
+  data() {
+    return {
+      shippingPrice: 5.99, // You can make this dynamic if needed
+    }
   },
   methods: {
     ...mapActions(useProductStore, ['removeFromCart']),
@@ -53,6 +77,9 @@ export default {
       if (item) {
         item.quantity = quantity > 0 ? quantity : 1
       }
+    },
+    proceedToCheckout() {
+      console.log('Proceeding to checkout...')
     },
   },
 }
@@ -134,9 +161,59 @@ export default {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.total {
+.total-card {
+  background-color: #2d2d2d;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  width: 300px;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-title {
   color: #ffffff;
   font-size: 1.2rem;
-  margin-top: 20px;
+  font-weight: 600;
+}
+
+.price-details {
+  width: 100%;
+  text-align: left;
+}
+
+.divider {
+  height: 1px;
+  background-color: #444;
+  margin: 10px 0;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.price-row.total {
+  font-weight: bold;
+  margin: 12px 0 8px 0;
+}
+
+.checkout-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.checkout-button:hover {
+  background-color: #45a049;
 }
 </style>

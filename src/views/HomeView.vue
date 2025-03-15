@@ -34,6 +34,7 @@ const handleCarouselNext = () => {
     smallText="Limited Time Offer"
     smallTextColor="red"
     bigText="Special Deals"
+    :timer="172800"
     :showViewAll="false"
     :showCarouselControls="true"
     @prev="handleCarouselPrev"
@@ -45,7 +46,7 @@ const handleCarouselNext = () => {
       v-for="product in visibleProducts"
       :key="product.id"
       :product="product"
-      @add-to-cart="addToCart"
+      @add-to-cart="productStore.addToCart(product)"
     />
   </div>
 

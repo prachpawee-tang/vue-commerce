@@ -2,10 +2,23 @@
   <div class="section-header">
     <!-- Left Side -->
     <div class="left-content">
-      <div class="small-text" :style="{ color: smallTextColor }">{{ smallText }}</div>
-      <div class="big-text">
+      <div class="small-text-container" style="display: flex">
+        <div class="rectangle"></div>
+        <div class="small-text">{{ smallText }}</div>
+      </div>
+      <div class="big-text" :style="{ marginTop: timer ? '0' : '1rem' }">
         {{ bigText }}
-        <span v-if="timer" class="timer">{{ formattedTime }}</span>
+        <div v-if="timer" class="timer">
+          <div v-for="(time, name, index) in formattedTime" :key="time" class="time-container">
+            <div>
+              <p class="time-label">{{ name.charAt(0).toUpperCase() + name.slice(1) }}</p>
+              <h2 class="time-value">{{ time.toString().padStart(2, '0') }}</h2>
+            </div>
+            <span v-if="index !== Object.keys(formattedTime).length - 1" class="time-separator"
+              >:</span
+            >
+          </div>
+        </div>
       </div>
     </div>
 
@@ -62,7 +75,7 @@ export default {
       const minutes = Math.floor((this.timeRemaining % 3600) / 60)
       const seconds = this.timeRemaining % 60
 
-      return `${days}d ${hours}h ${minutes}m ${seconds}s`
+      return { days, hours, minutes, seconds }
     },
   },
   methods: {
@@ -107,10 +120,50 @@ export default {
   font-weight: bold;
 }
 
+.big-text {
+  display: flex;
+  align-items: flex-end;
+  gap: 2em;
+
+  line-height: 1;
+}
+
+.small-text-container {
+  display: flex;
+  align-items: center;
+  color: #db4444;
+  gap: 1em;
+}
+.rectangle {
+  width: 15px;
+  height: 25px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  background: #db4444;
+  border-radius: 4px;
+}
+
 .timer {
   margin-left: 0.5rem;
   font-size: 1rem;
   color: #666;
+
+  display: flex;
+}
+.time-container {
+  display: flex;
+  align-items: flex-end;
+}
+.time-label {
+  font-size: 0.6em;
+}
+.time-value {
+  line-height: 1;
+  font-weight: bold;
+}
+.time-separator {
+  margin: 0.2em 0.2em;
 }
 
 .right-content {
