@@ -62,13 +62,13 @@ This project uses the [FakeStore API](https://fakestoreapi.com/) to fetch produc
 
 ## Project Structure
 
-src/
-├── assets/ # Static assets
-├── components/ # Vue components
-├── stores/ # Pinia stores
-├── router/ #
-├── views/ # Page components
-├── App.vue # Main application component
+src/  
+├── assets/ # Static assets  
+├── components/ # Vue components  
+├── stores/ # Pinia stores  
+├── router/ #  
+├── views/ # Page components  
+├── App.vue # Main application component  
 └── main.js # Application entry point
 
 ## Contributing
