@@ -1,30 +1,33 @@
 <template>
-  <div class="product-detail-container">
-    <div class="product-image">
-      <img :src="product.image" alt="Product Image" class="product-img" />
-    </div>
-    <div class="product-info">
-      <h1 class="product-name">{{ product.title }}</h1>
-      <p class="product-price">${{ product.price }}</p>
-      <p class="product-description">{{ product.description }}</p>
-      <div class="quantity-selector">
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" v-model="quantity" min="1" class="quantity-input" />
+  <div v-if="isLoading" class="loading">Loading product details...</div>
+  <div v-else>
+    <div class="product-detail-container">
+      <div class="product-image">
+        <img :src="product?.image" alt="Product Image" class="product-img" />
       </div>
-      <button @click="addToCart" class="add-to-cart-btn">Add to Cart</button>
+      <div class="product-info">
+        <h1 class="product-name">{{ product?.title }}</h1>
+        <p class="product-price">${{ product?.price }}</p>
+        <p class="product-description">{{ product?.description }}</p>
+        <div class="quantity-selector">
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" v-model="quantity" min="1" class="quantity-input" />
+        </div>
+        <button @click="addToCart" class="add-to-cart-btn">Add to Cart</button>
+      </div>
     </div>
-  </div>
 
-  <div class="related-products">
-    <SectionHeader smallText="Related Products" smallTextColor="red" bigText="" />
-    <div class="related-product-list">
-      <ProductItem
-        v-for="relatedProduct in products
-          .filter((p) => p.category === product.category && p.id !== product.id)
-          .slice(0, 4)"
-        :key="relatedProduct.id"
-        :product="relatedProduct"
-      />
+    <div class="related-products">
+      <SectionHeader smallText="Related Products" smallTextColor="red" bigText="" />
+      <div class="related-product-list">
+        <ProductItem
+          v-for="relatedProduct in products
+            .filter((p) => p.category === product.category && p.id !== product.id)
+            .slice(0, 4)"
+          :key="relatedProduct.id"
+          :product="relatedProduct"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +46,7 @@ export default {
   data() {
     return {
       quantity: 1,
+      isLoading: true,
     }
   },
   computed: {
@@ -61,9 +65,11 @@ export default {
   async created() {
     this.$watch(
       () => this.$route.params.id,
-      (newId, oldId) => {
+      async (newId, oldId) => {
         if (newId !== oldId) {
-          this.fetchProduct(newId)
+          this.isLoading = true
+          await this.fetchProduct(newId)
+          this.isLoading = false
         }
       },
     )
@@ -73,6 +79,7 @@ export default {
     if (this.productId) {
       await this.fetchProduct(this.productId)
     }
+    this.isLoading = false
   },
 }
 </script>
@@ -167,5 +174,11 @@ export default {
   .related-product-list {
     grid-template-columns: 1fr;
   }
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 2rem;
 }
 </style>
