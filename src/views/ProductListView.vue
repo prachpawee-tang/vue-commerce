@@ -39,8 +39,6 @@ export default {
   },
 
   async created() {
-    const category = this.$route.params.category
-    console.log('category', category)
     await this.fetchProducts()
   },
 }

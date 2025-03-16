@@ -70,6 +70,9 @@ export default {
     if (this.products.length === 0) {
       await this.fetchProducts()
     }
+    if (this.productId) {
+      await this.fetchProduct(this.productId)
+    }
   },
 }
 </script>
