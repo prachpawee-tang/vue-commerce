@@ -3,7 +3,7 @@
   <div v-else>
     <div class="product-detail-container">
       <div class="product-image">
-        <img :src="product?.image" alt="Product Image" class="product-img" />
+        <img :src="product.image" alt="Product Image" class="product-img" />
       </div>
       <div class="product-info">
         <h1 class="product-name">{{ product?.title }}</h1>
@@ -13,7 +13,7 @@
           <label for="quantity">Quantity:</label>
           <input type="number" id="quantity" v-model="quantity" min="1" class="quantity-input" />
         </div>
-        <button @click="addToCart" class="add-to-cart-btn">Add to Cart</button>
+        <button @click="handleAddToCart" class="add-to-cart-btn">Add to Cart</button>
       </div>
     </div>
 
@@ -56,10 +56,11 @@ export default {
     },
   },
   methods: {
-    ...mapActions(useProductStore, ['fetchProducts', 'fetchProduct']),
-    addToCart() {
+    ...mapActions(useProductStore, ['fetchProducts', 'fetchProduct', 'addToCart']),
+    handleAddToCart() {
       // Add to cart logic here
-      console.log(`Added ${this.quantity} of ${this.product.name} to cart`)
+      this.addToCart(this.product, this.quantity)
+      console.log(`Added ${this.quantity} of ${this.product.title} to cart`)
     },
   },
   async created() {

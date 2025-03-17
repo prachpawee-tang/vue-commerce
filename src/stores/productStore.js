@@ -16,12 +16,12 @@ export const useProductStore = defineStore('product', {
       const response = await axios.get('https://fakestoreapi.com/products/' + id)
       this.product = response.data
     },
-    addToCart(product) {
+    addToCart(product, quantity = 1) {
       const cartItem = this.cart.find((item) => item.id === product.id)
       if (cartItem) {
-        cartItem.quantity += 1 // Increment quantity if item already exists
+        cartItem.quantity += quantity // Increment quantity if item already exists
       } else {
-        this.cart.push({ ...product, quantity: 1 }) // Add new item with quantity 1
+        this.cart.push({ ...product, quantity }) // Add new item with quantity 1
       }
     },
     removeFromCart(productId) {
